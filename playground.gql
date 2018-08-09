@@ -1,0 +1,86 @@
+# App Default
+query User{
+  user (id: "cjkmmqm79000a0880oswmy0m9") {
+    name
+    age
+  }
+}
+
+query Posts {
+  posts (searchString: "10%") {
+    id
+    title
+    content
+    published
+    author {
+      name
+    }
+  }
+}
+
+mutation SignUp{
+  signup(
+    name: "Anderson",
+    email: "anderson@mail.com",
+    age: 48
+  ) {
+    id
+  }
+}
+
+mutation DraftPost {
+  createDraft(
+    authorId: "cjkmmqm79000a0880oswmy0m9"
+    title: "Prisma Quickstart"
+    content: "Follow the instructions to get started quickly, pick a tutorial to setup a Prisma service with your preferred database or use a bootstrap an entire GraphQL server based on Prisma and Prisma bindings."
+  ) {
+    id
+    published
+  }
+}
+
+mutation DraftNewPost{
+  createDraft(
+    title: "Join us at GraphQL Europe 🇪🇺 ",
+    content: "Get a 10%-discount with this promo code on graphql-europe.org: gql-boilerplates",
+    authorId: "cjkml9ks0000v0869z0vvetdk"
+  ) {
+    id
+    published
+  }
+}
+
+mutation PublishPost {
+  publish(id: "cjkmn3vt1000q088052iyu4n7") {
+    published
+    title
+  }
+}
+
+# Prisma default
+query AllUsers{
+  users {
+    email
+    id
+    name
+  }
+}
+
+query AllPosts {
+  posts(orderBy: createdAt_ASC) {
+    id
+    title
+    published
+    author {
+      id
+      name
+      email
+    }
+  }
+}
+
+mutation DeleteUser {
+  deleteUser(where: {id:"cjkml91tp000r0869kfr75u1g"}) {
+    name
+  }
+}
